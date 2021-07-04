@@ -1,3 +1,42 @@
-.webix_layout_line .top-bar {
-    background-color: black;
+.top-bar .webix_view {
+    background-color: #637583;
+}
+
+.top-bar .webix_el_box {
+    color: white;
+    font-size: 20px;
+}
+
+.top-bar .webix_button, .top-bar .webix_button:hover, .top-bar .webix_button:active  {
+    font-size: 20px;
+    color: white;
+    background: none;
+}
+
+.top-bar .webix_button .webix_icon_btn {
+    color: white;
+}
+
+.list-section .webix_list_item {
+    border: none;
+}
+
+.list-section .webix_view {
+    border: none;
+    background-color: #eeeeee;
+
+}
+
+.list-section .webix_template {
+    text-align: center;
+}
+
+
+.list-section .webix_template{
+    color: #279241;
+    font-size: 20px;
+}
+
+.footer {
+    text-align: center
 }

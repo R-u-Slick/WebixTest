@@ -3,69 +3,90 @@
 	<meta charset="utf-8">
 	<title> Test Layout</title>
 	<script type="text/javascript" src="http://cdn.webix.com/edge/webix.js"></script>
+	<script type="text/javascript" src="./testdata.js"></script>
 	<link rel="stylesheet" type="text/css" href="http://cdn.webix.com/edge/webix.css">
 	<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 	<script type="text/javascript" charset="utf-8">
+	webix.ui({
+		rows: [
+			{
+				css: "top-bar",
+				cols: [
+					{
+						view: "label",
+						label: "My app",
+					},
+					{
+						view: "button",
+						type: "icon",
+						label: "Profile",
+						icon: "wxi-user",
+						autowidth: true
+					}
+				]
+			},
+			{
+				height: 560,
+				cols: [
+					{
+						css: "list-section",
+						rows: [
+							{
+								view: "list",
+								data: ["Dashboard", "Users", "Products", "Locations"],
+								scroll:false
+							},
+							{
+								template: "Connected",
+								autoheight: true
+							}
+						]
+					},
+					{
+						view: "resizer"
+					},
+					{
+						gravity: 5,
+						view: "datatable",
+						id: "table1",
+						data: small_film_set,
+						autoConfig: true,
+						scroll: "y"
+					},
+					{
+						gravity: 2,
+						view:"form", 
+						id: "form1",
+						elements: [
+							{ rows:
+							[ 
+								{ template:"EDIT FILMS", type:"section"},
+								{ view:"text", label:"Title", name: "title" },
+								{ view:"text", label:"Year", name:"year"},
+								{ view:"text", label:"Rating", name:"rating"},
+								{ view:"text", label:"Votes", name:"votes"},
+								{cols: [
+									{ view:"button", value:"Add new" , css:"webix_primary", click: function(){ $$("form1").save(); }},
+									{ view:"button", value:"Clear" , css:"webix_secondary",click:function(){ $$("form1").clear(); }}
+								]							
+								}
+							]
+							},
+						]
+					}
+				]
+			},
+			{	
+				css: "footer",
+				view: "template",
+				template: "This software is provided by <a href='https://webix.com'>https://webix.com</a>. All rights reserved (c)"
+			}
+		]
+	});
 
-		var side = {
-			rows:[
-				{
-					view:"list",
-					id:"mylist",
-					width:200,
-					autoheight:true,
-					scroll:false,
-					data:[ "Start", "Data", "Profile" ]
-				},
-				{ },
-				{ view:"button", id:"mybutton", value:"Log out"}
-			]
-		};
-
-		var main = {
-			rows:[
-				{ template:"Data"},
-				{ template:"Controls", height:200}
-			]
-		};
-
-		// webix.ui({
-		// 	cols:[side, main]
-		// });
-
-		webix.ui({
-			rows: [
-				{
-					cols: [
-						{
-							view: "template",
-							template: "My app"
-						},
-						{
-							view: "button",
-							value: "Profile",
-							autowidth: true
-						}
-					]
-				},
-				{
-					cols: [
-						{view: "list"},
-						{view: "datatable"},
-						{view: "template"}
-					]
-				},
-				{
-					view: "template",
-					template: "This software is provided by https://webix.com. All rights reserved (c)"
-				}
-			]
-		});
-
-
-
+	$$("form1").bind($$("table1"));
 
 	</script>
 </body>
