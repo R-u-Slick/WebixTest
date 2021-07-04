@@ -4,8 +4,7 @@
 	<title> Test Layout</title>
 	<script type="text/javascript" src="http://cdn.webix.com/edge/webix.js"></script>
 	<link rel="stylesheet" type="text/css" href="http://cdn.webix.com/edge/webix.css">
-	<style type="text/css">
-	</style>
+	<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 	<script type="text/javascript" charset="utf-8">
@@ -32,12 +31,41 @@
 			]
 		};
 
+		// webix.ui({
+		// 	cols:[side, main]
+		// });
+
 		webix.ui({
-			id:"top",
-			cols:[side, main]
+			rows: [
+				{
+					cols: [
+						{
+							view: "template",
+							template: "My app"
+						},
+						{
+							view: "button",
+							value: "Profile",
+							autowidth: true
+						}
+					]
+				},
+				{
+					cols: [
+						{view: "list"},
+						{view: "datatable"},
+						{view: "template"}
+					]
+				},
+				{
+					view: "template",
+					template: "This software is provided by https://webix.com. All rights reserved (c)"
+				}
+			]
 		});
 
-		// console.log($$("mylist").getParentView())
+
+
 
 	</script>
 </body>
