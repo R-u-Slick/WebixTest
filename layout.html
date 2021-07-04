@@ -1,0 +1,44 @@
+<!doctype html>
+<head>
+	<meta charset="utf-8">
+	<title> Test Layout</title>
+	<script type="text/javascript" src="http://cdn.webix.com/edge/webix.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://cdn.webix.com/edge/webix.css">
+	<style type="text/css">
+	</style>
+</head>
+<body>
+	<script type="text/javascript" charset="utf-8">
+
+		var side = {
+			rows:[
+				{
+					view:"list",
+					id:"mylist",
+					width:200,
+					autoheight:true,
+					scroll:false,
+					data:[ "Start", "Data", "Profile" ]
+				},
+				{ },
+				{ view:"button", id:"mybutton", value:"Log out"}
+			]
+		};
+
+		var main = {
+			rows:[
+				{ template:"Data"},
+				{ template:"Controls", height:200}
+			]
+		};
+
+		webix.ui({
+			id:"top",
+			cols:[side, main]
+		});
+
+		// console.log($$("mylist").getParentView())
+
+	</script>
+</body>
+</html>
