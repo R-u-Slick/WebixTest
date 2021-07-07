@@ -64,7 +64,7 @@
 					{ view:"text", label:"Votes", name:"votes"},			
 					{cols: [
 						{ view:"button", value:"Add new" , css:"webix_primary", click: function(){ $$("form1").save(); }},
-						{ view:"button", value:"Clear" , css:"webix_secondary",click:function(){ $$("form1").clear(); }}
+						{ view:"button", value:"Clear" , css:"webix_secondary",click:function(){ $$("form1").clear(); $$('table1').unselectAll() }}
 					]},
 				]}
 			],              
