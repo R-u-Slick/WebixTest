@@ -19,8 +19,7 @@
 
 .list-section .webix_view {
     background-color: #eeeeee;
-    border: 0px solid #eeeeee;
-
+    border-color: transparent;
 }
 
 .list-section .webix_template {
