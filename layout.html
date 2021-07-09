@@ -2,91 +2,100 @@
 <head>
 	<meta charset="utf-8">
 	<title> Test Layout</title>
-	<script type="text/javascript" src="http://cdn.webix.com/edge/webix.js"></script>
+	<script type="text/javascript" src="http://cdn.webix.com/edge/webix.js" ></script>
 	<script type="text/javascript" src="./testdata.js"></script>
 	<link rel="stylesheet" type="text/css" href="http://cdn.webix.com/edge/webix.css">
 	<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 	<script type="text/javascript" charset="utf-8">
-	webix.ui({
-		rows: [
-			{
-				css: "top-bar",
-				cols: [
-					{
-						view: "label",
-						label: "My app",
-					},
-					{
-						view: "button",
-						type: "icon",
-						label: "Profile",
-						icon: "wxi-user",
-						autowidth: true
-					}
-				]
-			},
-			{
-				height: 865,
-				cols: [
-					{
-						css: "list-section",
-						rows: [
-							{
-								view: "list",
-								data: ["Dashboard", "Users", "Products", "Locations"],
-								scroll:false
-							},
-							{
-								template: "<span class='webix_icon wxi-check'></span>Connected",
-								autoheight: true
-							}
-						]
-					},
-					{
-						view: "resizer"
-					},
-					{
-						gravity: 5,
-						view: "datatable",
-						id: "table1",
-						data: small_film_set,
-						autoConfig: true,
-						scroll: "y"
-					},
-					{
-						gravity: 2,
-						view:"form", 
-						id: "form1",
-						elements: [
-							{ rows:
-							[ 
-								{ template:"EDIT FILMS", type:"section"},
-								{ view:"text", label:"Title", name: "title" },
-								{ view:"text", label:"Year", name:"year"},
-								{ view:"text", label:"Rating", name:"rating"},
-								{ view:"text", label:"Votes", name:"votes"},
-								{cols: [
-									{ view:"button", value:"Add new" , css:"webix_primary", click: function(){ $$("form1").save(); }},
-									{ view:"button", value:"Clear" , css:"webix_secondary",click:function(){ $$("form1").clear(); }}
-								]							
-								}
-							]
-							},
-						]
-					}
-				]
-			},
-			{	
-				css: "footer",
-				view: "template",
-				template: "This software is provided by <a href='https://webix.com'>https://webix.com</a>. All rights reserved (c)"
-			}
-		]
-	});
+	webix.ready(function(){
+		const topBar = {
+			css: "top-bar",
+			cols: [
+				{
+					view: "label",
+					label: "My app",
+				},
+				{
+					view: "button",
+					type: "icon",
+					label: "Profile",
+					icon: "wxi-user",
+					autowidth: true
+				}
+			]
+		};
 
-	$$("form1").bind($$("table1"));
+		const listSection = {
+			css: "list-section",
+			rows: [
+				{
+					view: "list",
+					data: ["Dashboard", "Users", "Products", "Locations"],
+					scroll:false
+				},
+				{
+					template: "<span class='webix_icon wxi-check'></span>Connected",
+					autoheight: true
+				}, 
+				
+			]
+		};
+
+		const tableSection = {
+			gravity: 5,
+			view: "datatable",
+			id: "table1",
+			data: small_film_set,
+			autoConfig: true,
+			scroll: "y",
+		};
+		
+		const form = {            				
+			view: "form",
+			id: "form1",
+			elements: [
+				{ rows:	[ 
+					{ template:"EDIT FILMS", type:"section"},
+					{ view:"text", label:"Title", name: "title" },
+					{ view:"text", label:"Year", name:"year"},
+					{ view:"text", label:"Rating", name:"rating"},
+					{ view:"text", label:"Votes", name:"votes"},			
+					{cols: [
+						{ view:"button", value:"Add new" , css:"webix_primary", click: function(){ $$("form1").save(); }},
+						{ view:"button", value:"Clear" , css:"webix_secondary",click:function(){ $$("form1").clear(); $$('table1').unselectAll() }}
+					]},
+				]}
+			],              
+		};
+
+		const formSection = {
+			gravity: 2,
+			rows: [
+				form,
+				{}		//autoheight fix
+			]
+		};
+
+		const mainSection = {
+			cols: [
+				listSection, {view: "resizer"}, tableSection, formSection
+			]
+		}
+		
+		const footer = {	
+			css: "footer",
+			view: "template",
+			autoheight: true,
+			template: "This software is provided by <a href='https://webix.com'>https://webix.com</a>. All rights reserved (c)"
+		};
+
+		webix.ui({
+			rows: [topBar, mainSection, footer]
+		});
+		$$("form1").bind($$("table1"));
+		})
 
 	</script>
 </body>

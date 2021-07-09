@@ -17,14 +17,9 @@
     color: white;
 }
 
-.list-section .webix_list_item {
-    border: none;
-}
-
 .list-section .webix_view {
-    border: none;
     background-color: #eeeeee;
-
+    border-color: transparent;
 }
 
 .list-section .webix_template {
